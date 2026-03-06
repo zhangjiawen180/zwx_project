@@ -1,6 +1,28 @@
-#include <stdio.h>
+#include <stdio.h>  // 引入标准输入输出头文件，包含printf、scanf、fgets等函数
+#include <string.h> // 引入字符串处理头文件，用于处理输入的字符串
 
 int main() {
-    printf("Hello, World!\n");
+    // 1. 基础的 Hello World 输出
+    printf("=== 基础输出 ===\n");
+    printf("Hello World!\n\n");
+
+    // 2. 定义一个字符数组存储用户输入（最多存储100个字符）
+    char input_content[101]; // 多留1位存储字符串结束符 '\0'
+
+    // 3. 提示用户输入内容
+    printf("=== 输入输出功能 ===\n");
+    printf("请输入任意内容（最多100个字符）：");
+
+    // 4. 读取用户键盘输入（使用fgets避免scanf的空格截断问题）
+    // fgets(存储数组, 最大长度, 输入源)，stdin代表标准输入（键盘）
+    fgets(input_content, sizeof(input_content), stdin);
+
+    // 5. 去除fgets自动读取的换行符（优化输出格式）
+    input_content[strcspn(input_content, "\n")] = '\0';
+
+    // 6. 输出用户输入的内容
+    printf("\n你输入的内容是：%s\n", input_content);
+
+    // 程序正常结束
     return 0;
 }
